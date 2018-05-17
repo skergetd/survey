@@ -84,7 +84,7 @@ public class MainActivity extends BaseActivity {
                         textArray.add("Didn't get your name...");
                         animateText(textArray, new AnimationListDone() {
                             public void done() {
-                                activateNextButton();
+                                requestUserName();
                             }
                         });
                     } else {
@@ -94,7 +94,10 @@ public class MainActivity extends BaseActivity {
                         textArray.add("Hi " + userName + "!");
                         animateText(textArray, new AnimationListDone() {
                             public void done() {
-                                activateNextButton();
+                                // Check if username was entered and stored into DB
+                                if((userName=getDatabase().get("usersName"))!=null) {
+                                    activateNextButton();
+                                }
                             }
                         });
                     }
