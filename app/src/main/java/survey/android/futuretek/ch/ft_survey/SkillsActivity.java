@@ -15,6 +15,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -36,6 +37,22 @@ public class SkillsActivity extends BaseActivity {
         View mainTextView = findViewById(R.id.textLayout);
         mainTextView.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
+            }
+        });
+
+        // Action when Add skill button is clicked
+        findViewById(R.id.addSkill).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openInputDialog(new View.OnClickListener() {
+                    public void onClick(View v) {
+                        EditText userInput = ((EditText) v.findViewById(R.id.userInput));
+                        String newSkill = userInput.getText().toString();
+                        if(!newSkill.isEmpty()){
+                            insertSkill(newSkill);
+                        }
+                    }
+                });
             }
         });
 
