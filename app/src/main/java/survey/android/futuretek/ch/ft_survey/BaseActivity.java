@@ -12,6 +12,7 @@ import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Toast;
 
 import java.util.List;
@@ -74,8 +75,14 @@ public class BaseActivity extends Activity {
     }
 
     protected void openInputDialog(final View.OnClickListener onClickListener) {
+        openInputDialog(onClickListener, null);
+    }
+
+    protected void openInputDialog(final View.OnClickListener onClickListener, String textForInput) {
         final Dialog dlg = new Dialog(this);
         dlg.setContentView(R.layout.dialog);
+        if(textForInput != null)
+            ((EditText)dlg.findViewById(R.id.userInput)).setText(textForInput);
         try{
             ((Button) dlg.findViewById(R.id.okBtn)).setOnClickListener(new View.OnClickListener() {
                 public void onClick(View v) {

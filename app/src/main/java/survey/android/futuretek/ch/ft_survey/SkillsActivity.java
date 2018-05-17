@@ -10,6 +10,7 @@ import android.content.Context;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -96,6 +97,15 @@ public class SkillsActivity extends BaseActivity {
                 convertView = inflater.inflate(R.layout.list_row, null);
                 viewHolder = new ViewHolder();
                 viewHolder.textView = (TextView) convertView.findViewById(R.id.textView1);
+                // Functionality to edit skill
+                viewHolder.textView.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        ViewGroup row = ((ViewGroup)v.getParent());
+                        final String oldSkill = ((TextView)row.findViewById(R.id.textView1)).getText().toString();
+                        showEditSkillDialog(oldSkill);
+                    }
+                });
                 viewHolder.delBtn = (Button) convertView.findViewById(R.id.deleteBtn);
                 viewHolder.delBtn.setOnClickListener(new View.OnClickListener() {
                     public void onClick(View v) {
@@ -129,6 +139,29 @@ public class SkillsActivity extends BaseActivity {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    private void updateSkill(String oldSkill, String newSkill) {
+        try {
+            getDatabase().updateSkill(oldSkill, newSkill);
+            _productlist = getDatabase().getAllSkills();
+            adapter.notifyDataSetChanged();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    // Open dialog and prefill skill name into the input for editing it
+    private void showEditSkillDialog(final String oldSkill) {
+        openInputDialog(new View.OnClickListener() {
+            public void onClick(View v) {
+                EditText userInput = ((EditText) v.findViewById(R.id.userInput));
+                String newSkill = userInput.getText().toString();
+                if(!newSkill.isEmpty()){
+                    updateSkill(oldSkill, newSkill);
+                }
+            }
+        }, oldSkill);
     }
 
 
