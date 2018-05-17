@@ -22,6 +22,7 @@
         </activity>
         <activity android:name=".AboutFTActivity">
         </activity>
+        <activity android:name=".AboutDusanActivity" />
     </application>
 
 </manifest>

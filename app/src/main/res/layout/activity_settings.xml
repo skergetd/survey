@@ -13,9 +13,20 @@
         android:textSize="22dp"
         android:fontFamily="monospace"
         android:textColor="#09FF00"
-        android:layout_alignParentBottom="true"
+        android:layout_above="@+id/dusansStory"
         android:background="@drawable/btn_bg"
         android:text="Add skill"
+        />
+    <Button
+        android:id="@+id/dusansStory"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="22dp"
+        android:fontFamily="monospace"
+        android:textColor="#09FF00"
+        android:layout_alignParentBottom="true"
+        android:background="@drawable/btn_bg"
+        android:text="To Dusans story->"
         />
     <ScrollView
         android:id="@+id/scrollView"
