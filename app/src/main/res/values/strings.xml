@@ -1,4 +1,10 @@
 <resources>
     <string name="app_name">FT-Survey</string>
     <string name="action_settings">Settings</string>
+
+    <string-array name="default_skills">
+        <item>Android</item>
+        <item>Java</item>
+        <item>Software Developer</item>
+    </string-array>
 </resources>

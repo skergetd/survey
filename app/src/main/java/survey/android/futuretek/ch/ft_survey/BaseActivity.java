@@ -41,8 +41,12 @@ public class BaseActivity extends Activity {
         }
         if(!firstTimeOnThisApp){
             db.put("firstTimeOnThisApp", true);
-            db.putSkill("Android");
-            db.putSkill("Java");
+
+            // Get and insert default skills from strings.xml file. This way it is easier to translate them in the future.
+            String[] stringArray = getResources().getStringArray(R.array.default_skills);
+            for (String defaultSkill: stringArray){
+                db.putSkill(defaultSkill);
+            }
         }
     }
 
